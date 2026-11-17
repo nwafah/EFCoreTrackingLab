@@ -1,6 +1,14 @@
 ﻿using EFCoreTrackingLab.Data;
 using EFCoreTrackingLab.Models;
 using Microsoft.EntityFrameworkCore;
+using BenchmarkDotNet.Running;
+using EFCoreTrackingLab.Benchmarks;
+
+if (args.Contains("--benchmark"))
+{
+    BenchmarkRunner.Run<OrderQueryBenchmarks>();
+    return;
+}
 
 await using var db = new AppDbContext();
 
